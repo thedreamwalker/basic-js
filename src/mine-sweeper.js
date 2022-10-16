@@ -32,28 +32,28 @@ function minesweeper(matrix) {
   
   for (let i = 0; i < matrix.length; i++)
 	newMatrix.push(matrix[i].slice());
-  
-  // функция формирует число true среди всех соседей элемента
 
   const checkNeighbor = (element, index1, index2) => {
-    const allNeighbor = [];
-   
-    if (index1 !== 0 && index2 !== 0) {allNeighbor.push(element[index1 - 1][index2 - 1])};
-    if (index1 !== 0) {allNeighbor.push(element[index1 - 1][index2])};
-    if (index1 !== 0 && index2 !== element[index2].length - 1) {allNeighbor.push(element[index1 - 1][index2 + 1])};
-    if (index2 !== 0) {allNeighbor.push(element[index1][index2 - 1])};
-    if (index2 !== element[index2].length - 1) {allNeighbor.push(element[index1][index2 + 1])};
-    if (index1 !== element[index1].length - 1 && index2 !== 0) {allNeighbor.push(element[index1 + 1][index2 - 1])};
-    if (index1 !== element[index1].length - 1 && index2 !== element[index2].length - 1) {allNeighbor.push(element[index1 + 1][index2])};
-    if (index1 !== element[index1].length - 1 && index2 !== element[index2].length - 1) {allNeighbor.push(element[index1 + 1][index2 + 1])};
     
     let counter = 0;
-  
-    allNeighbor.forEach(elem => {
-      if (elem === true) {
-        counter += 1;
-      }
-    });
+    
+    if (element[index1 - 1]) {
+      if (element[index1 - 1][index2] === true) {counter += 1;}
+      if (element[index1 - 1][index2 - 1] === true) {counter += 1;}
+      if (element[index1 - 1][index2 + 1] === true) {counter += 1;}
+    }
+    
+    if (element[index1][index2 - 1] === true) {counter += 1;}
+    if (element[index1][index2 + 1] === true) {counter += 1;}
+    
+    if (element[index1 + 1]) {
+      if (element[index1 + 1][index2 - 1] === true) {counter += 1;}
+      if (element[index1 + 1][index2] === true) {counter += 1;}
+      if (element[index1 + 1][index2 + 1] === true) {counter += 1;}
+    }
+    
+    console.log(counter);
+    
 
     return counter;
   };
